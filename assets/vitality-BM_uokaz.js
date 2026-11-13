@@ -4178,8 +4178,9 @@ float swimS = clamp((position.z - uMinZ) / uRangeZ, 0.0, 1.0);
 float swimEnv = pow(1.0 - swimS, 1.35) * 0.85 + 0.15;
 float swimT = uTime * uFreq;
 float swimPv = uPivot * sin(swimT - 0.6);
-transformed.xz = mat2(cos(swimPv), -sin(swimPv), sin(swimPv), cos(swimPv)) * transformed.xz;
-`+(n.vertical?`transformed.y`:`transformed.x`)+` += uAmp * uAmpScale * swimEnv * (sin(swimT + swimS * uWaveLen)
+`+(n.vertical?`transformed.yz = mat2(cos(swimPv), -sin(swimPv), sin(swimPv), cos(swimPv)) * transformed.yz;
+`:`transformed.xz = mat2(cos(swimPv), -sin(swimPv), sin(swimPv), cos(swimPv)) * transformed.xz;
+`)+(n.vertical?`transformed.y`:`transformed.x`)+` += uAmp * uAmpScale * swimEnv * (sin(swimT + swimS * uWaveLen)
   + 0.22 * sin(2.0 * swimT + swimS * uWaveLen * 1.7 + 1.3));
 float swimTw = uTwist * swimEnv * sin(swimT + swimS * uWaveLen + 1.1);
 transformed.xy = mat2(cos(swimTw), -sin(swimTw), sin(swimTw), cos(swimTw)) * transformed.xy;
